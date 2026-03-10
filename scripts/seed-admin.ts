@@ -2,6 +2,7 @@ import "dotenv/config";
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 
 async function seedAdmin() {
   const connectionString = process.env.DATABASE_URL;
@@ -9,8 +10,9 @@ async function seedAdmin() {
     throw new Error("DATABASE_URL is not set. Copy .env.example to .env and fill in the values.");
   }
 
+  const pool = new Pool({ connectionString });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const adapter = new PrismaPg({ connectionString } as any);
+  const adapter = new PrismaPg(pool as any);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = new PrismaClient({ adapter } as any);
 
