@@ -50,15 +50,23 @@ export default function MessageList({ messages, onMarkRead, onDelete }: MessageL
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className={`text-sm font-semibold ${!msg.read ? "text-white" : "text-gray-300"}`}>
-                    {msg.name}
+                    {msg.name || msg.telegram}
                   </p>
-                  <a
-                    href={`mailto:${msg.email}`}
-                    className="text-xs text-indigo-400 hover:underline"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {msg.email}
-                  </a>
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <a
+                      href={`mailto:${msg.email}`}
+                      className="text-xs text-indigo-400 hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {msg.email}
+                    </a>
+                    {msg.telegram && (
+                      <span className="text-xs text-sky-400">{msg.telegram}</span>
+                    )}
+                    {msg.phone && (
+                      <span className="text-xs text-gray-400">{msg.phone}</span>
+                    )}
+                  </div>
                 </div>
                 <p className="text-xs text-gray-600 flex-shrink-0">
                   {new Date(msg.createdAt).toLocaleDateString("en-US", {
@@ -68,7 +76,7 @@ export default function MessageList({ messages, onMarkRead, onDelete }: MessageL
                   })}
                 </p>
               </div>
-              <p className="text-xs text-gray-500 mt-1 truncate">{msg.message}</p>
+              <p className="text-xs text-gray-500 mt-1 truncate">{msg.message || "—"}</p>
             </div>
 
             <div className="flex items-center gap-1 flex-shrink-0" onClick={(e) => e.stopPropagation()}>
@@ -94,9 +102,17 @@ export default function MessageList({ messages, onMarkRead, onDelete }: MessageL
 
           {expanded === msg.id && (
             <div className="px-4 pb-4 pt-0 border-t border-white/5 ml-6">
-              <p className="text-sm text-gray-300 mt-3 whitespace-pre-wrap leading-relaxed">
-                {msg.message}
-              </p>
+              <div className="mt-3 space-y-1 text-xs text-gray-400">
+                {msg.name && <p><span className="text-gray-500">Имя:</span> {msg.name}</p>}
+                <p><span className="text-gray-500">Telegram:</span> <span className="text-sky-400">{msg.telegram}</span></p>
+                {msg.phone && <p><span className="text-gray-500">Телефон:</span> {msg.phone}</p>}
+                <p><span className="text-gray-500">Email:</span> {msg.email}</p>
+              </div>
+              {msg.message && (
+                <p className="text-sm text-gray-300 mt-3 whitespace-pre-wrap leading-relaxed">
+                  {msg.message}
+                </p>
+              )}
               <a
                 href={`mailto:${msg.email}?subject=Re: Your message`}
                 className="inline-flex items-center gap-1.5 mt-3 text-xs text-indigo-400 hover:text-indigo-300 transition-colors"

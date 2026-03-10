@@ -13,9 +13,11 @@ export interface Project {
 
 export interface ContactMessage {
   id: number;
-  name: string;
+  name?: string | null;
+  telegram: string;
+  phone?: string | null;
   email: string;
-  message: string;
+  message?: string | null;
   read: boolean;
   createdAt: Date | string;
 }

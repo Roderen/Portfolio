@@ -22,9 +22,11 @@ model Project {
 
 model ContactMessage {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String?
+  telegram  String
+  phone     String?
   email     String
-  message   String
+  message   String?
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }

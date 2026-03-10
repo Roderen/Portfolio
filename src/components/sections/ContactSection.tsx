@@ -9,12 +9,17 @@ import { useLocale } from "@/lib/locale-context";
 import { useInView } from "@/lib/use-in-view";
 
 const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().optional(),
+  telegram: z.string().min(2, "Telegram must be at least 2 characters"),
+  phone: z.string().optional(),
   email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
+
+const inputClass =
+  "w-full bg-gray-800/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all";
 
 export default function ContactSection() {
   const { t } = useLocale();
@@ -70,39 +75,64 @@ export default function ContactSection() {
           onSubmit={handleSubmit(onSubmit)}
           className="bg-gray-900/60 backdrop-blur-sm border border-white/8 rounded-2xl p-8 space-y-5"
         >
+          {/* Name (optional) */}
           <div>
             <input
               {...register("name")}
               placeholder={t.contact.name}
-              className="w-full bg-gray-800/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all"
+              className={inputClass}
             />
-            {errors.name && (
-              <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.name.message}</p>
+          </div>
+
+          {/* Telegram (required) */}
+          <div>
+            <label className="block text-sm text-gray-400 mb-1.5 ml-1">
+              Telegram <span className="text-indigo-400">*</span>
+            </label>
+            <input
+              {...register("telegram")}
+              placeholder={t.contact.telegram}
+              className={inputClass}
+            />
+            {errors.telegram && (
+              <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.telegram.message}</p>
             )}
           </div>
 
+          {/* Phone (optional) */}
           <div>
+            <input
+              {...register("phone")}
+              type="tel"
+              placeholder={t.contact.phone}
+              className={inputClass}
+            />
+          </div>
+
+          {/* Email (required) */}
+          <div>
+            <label className="block text-sm text-gray-400 mb-1.5 ml-1">
+              Email <span className="text-indigo-400">*</span>
+            </label>
             <input
               {...register("email")}
               type="email"
               placeholder={t.contact.email}
-              className="w-full bg-gray-800/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all"
+              className={inputClass}
             />
             {errors.email && (
               <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.email.message}</p>
             )}
           </div>
 
+          {/* Message (optional) */}
           <div>
             <textarea
               {...register("message")}
               rows={5}
               placeholder={t.contact.message}
-              className="w-full bg-gray-800/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all resize-none"
+              className={`${inputClass} resize-none`}
             />
-            {errors.message && (
-              <p className="text-red-400 text-xs mt-1.5 ml-1">{errors.message.message}</p>
-            )}
           </div>
 
           {status === "success" && (

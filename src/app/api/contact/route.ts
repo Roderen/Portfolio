@@ -3,26 +3,35 @@ import { db } from "@/lib/db";
 import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().min(2),
+  name: z.string().optional(),
+  telegram: z.string().min(2),
+  phone: z.string().optional(),
   email: z.string().email(),
-  message: z.string().min(10),
+  message: z.string().optional(),
 });
 
-async function sendTelegramNotification(name: string, email: string, message: string) {
+async function sendTelegramNotification(data: {
+  name?: string;
+  telegram: string;
+  phone?: string;
+  email: string;
+  message?: string;
+}) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
 
-  const text =
-    `📬 *Новое сообщение с портфолио*\n\n` +
-    `👤 *Имя:* ${name}\n` +
-    `📧 *Email:* ${email}\n\n` +
-    `💬 *Сообщение:*\n${message}`;
+  const lines = [`📬 *Новое сообщение с портфолио*\n`];
+  if (data.name) lines.push(`👤 *Имя:* ${data.name}`);
+  lines.push(`💬 *Telegram:* ${data.telegram}`);
+  if (data.phone) lines.push(`📞 *Телефон:* ${data.phone}`);
+  lines.push(`📧 *Email:* ${data.email}`);
+  if (data.message) lines.push(`\n✉️ *Сообщение:*\n${data.message}`);
 
   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "Markdown" }),
+    body: JSON.stringify({ chat_id: chatId, text: lines.join("\n"), parse_mode: "Markdown" }),
   });
 }
 
@@ -33,7 +42,7 @@ export async function POST(req: NextRequest) {
 
     await db.contactMessage.create({ data });
 
-    sendTelegramNotification(data.name, data.email, data.message).catch(() => {});
+    await sendTelegramNotification(data).catch(() => {});
 
     return NextResponse.json({ ok: true });
   } catch {
