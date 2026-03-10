@@ -77,6 +77,10 @@ export default function ContactSection() {
         >
           {/* Name (optional) */}
           <div>
+            <label className="block text-sm text-gray-400 mb-1.5 ml-1">
+              {t.contact.label_name}{" "}
+              <span className="text-gray-600 text-xs font-normal">({t.contact.optional})</span>
+            </label>
             <input
               {...register("name")}
               placeholder={t.contact.name}
@@ -87,7 +91,7 @@ export default function ContactSection() {
           {/* Telegram (required) */}
           <div>
             <label className="block text-sm text-gray-400 mb-1.5 ml-1">
-              Telegram <span className="text-indigo-400">*</span>
+              {t.contact.label_telegram} <span className="text-indigo-400">*</span>
             </label>
             <input
               {...register("telegram")}
@@ -101,6 +105,10 @@ export default function ContactSection() {
 
           {/* Phone (optional) */}
           <div>
+            <label className="block text-sm text-gray-400 mb-1.5 ml-1">
+              {t.contact.label_phone}{" "}
+              <span className="text-gray-600 text-xs font-normal">({t.contact.optional})</span>
+            </label>
             <input
               {...register("phone")}
               type="tel"
@@ -112,7 +120,7 @@ export default function ContactSection() {
           {/* Email (required) */}
           <div>
             <label className="block text-sm text-gray-400 mb-1.5 ml-1">
-              Email <span className="text-indigo-400">*</span>
+              {t.contact.label_email} <span className="text-indigo-400">*</span>
             </label>
             <input
               {...register("email")}
@@ -127,6 +135,10 @@ export default function ContactSection() {
 
           {/* Message (optional) */}
           <div>
+            <label className="block text-sm text-gray-400 mb-1.5 ml-1">
+              {t.contact.label_message}{" "}
+              <span className="text-gray-600 text-xs font-normal">({t.contact.optional})</span>
+            </label>
             <textarea
               {...register("message")}
               rows={5}
