@@ -67,7 +67,9 @@ type ServiceItem = {
   title: string;
   desc: string;
   features: string[];
-  color: string;
+  gradient: string;
+  border: string;
+  accent: string;
 };
 
 function getServices(t: TranslationKeys): ServiceItem[] {
@@ -77,42 +79,54 @@ function getServices(t: TranslationKeys): ServiceItem[] {
       title: t.services.s1_title,
       desc: t.services.s1_desc,
       features: [t.services.s1_f1, t.services.s1_f2, t.services.s1_f3, t.services.s1_f4],
-      color: "from-indigo-500/20 to-indigo-500/5 border-indigo-500/20 text-indigo-400",
+      gradient: "from-indigo-500/20 to-indigo-500/5",
+      border: "border-indigo-500/20",
+      accent: "text-indigo-400",
     },
     {
       icon: <IconMonitor />,
       title: t.services.s2_title,
       desc: t.services.s2_desc,
       features: [t.services.s2_f1, t.services.s2_f2, t.services.s2_f3, t.services.s2_f4],
-      color: "from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-400",
+      gradient: "from-cyan-500/20 to-cyan-500/5",
+      border: "border-cyan-500/20",
+      accent: "text-cyan-400",
     },
     {
       icon: <IconCart />,
       title: t.services.s3_title,
       desc: t.services.s3_desc,
       features: [t.services.s3_f1, t.services.s3_f2, t.services.s3_f3, t.services.s3_f4],
-      color: "from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400",
+      gradient: "from-violet-500/20 to-violet-500/5",
+      border: "border-violet-500/20",
+      accent: "text-violet-400",
     },
     {
       icon: <IconApi />,
       title: t.services.s4_title,
       desc: t.services.s4_desc,
       features: [t.services.s4_f1, t.services.s4_f2, t.services.s4_f3, t.services.s4_f4],
-      color: "from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400",
+      gradient: "from-emerald-500/20 to-emerald-500/5",
+      border: "border-emerald-500/20",
+      accent: "text-emerald-400",
     },
     {
       icon: <IconCloud />,
       title: t.services.s5_title,
       desc: t.services.s5_desc,
       features: [t.services.s5_f1, t.services.s5_f2, t.services.s5_f3, t.services.s5_f4],
-      color: "from-sky-500/20 to-sky-500/5 border-sky-500/20 text-sky-400",
+      gradient: "from-sky-500/20 to-sky-500/5",
+      border: "border-sky-500/20",
+      accent: "text-sky-400",
     },
     {
       icon: <IconWrench />,
       title: t.services.s6_title,
       desc: t.services.s6_desc,
       features: [t.services.s6_f1, t.services.s6_f2, t.services.s6_f3, t.services.s6_f4],
-      color: "from-orange-500/20 to-orange-500/5 border-orange-500/20 text-orange-400",
+      gradient: "from-orange-500/20 to-orange-500/5",
+      border: "border-orange-500/20",
+      accent: "text-orange-400",
     },
   ];
 }
@@ -149,10 +163,10 @@ export default function ServicesSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className={`relative bg-gradient-to-br ${service.color.split(" ").slice(0, 2).join(" ")} border ${service.color.split(" ")[2]} rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300`}
+              className={`relative bg-gradient-to-br ${service.gradient} border ${service.border} rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300`}
             >
               {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl bg-gray-900/60 flex items-center justify-center ${service.color.split(" ")[3]}`}>
+              <div className={`w-12 h-12 rounded-xl bg-gray-900/60 flex items-center justify-center ${service.accent}`}>
                 {service.icon}
               </div>
 
@@ -165,9 +179,9 @@ export default function ServicesSection() {
               {/* Feature list */}
               <ul className="mt-auto space-y-1.5">
                 {service.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2 text-gray-300 text-sm">
-                    <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 bg-current ${service.color.split(" ")[3]}`} />
-                    {feature}
+                  <li key={feature} className={`flex items-center gap-2 text-sm ${service.accent}`}>
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-current" />
+                    <span className="text-gray-300">{feature}</span>
                   </li>
                 ))}
               </ul>
