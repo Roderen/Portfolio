@@ -164,7 +164,8 @@ export default function ServicesSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className={`relative bg-gradient-to-br ${service.gradient} border ${service.border} rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300`}
+              whileHover={{ y: -4 }}
+              className={`relative bg-gradient-to-br ${service.gradient} border ${service.border} rounded-2xl p-6 flex flex-col gap-4`}
             >
               {/* Icon */}
               <div className={`w-12 h-12 rounded-xl bg-gray-900/60 flex items-center justify-center ${service.accent}`}>
