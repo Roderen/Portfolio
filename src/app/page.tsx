@@ -6,6 +6,9 @@ import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
 
+// Always render on request, never statically at build time
+export const dynamic = "force-dynamic";
+
 // ─── CUSTOMIZE YOUR INFO HERE ───────────────────────────────────────────────
 const PORTFOLIO_CONFIG = {
   name: "Your Name",
