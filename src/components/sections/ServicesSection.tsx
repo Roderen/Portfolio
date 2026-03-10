@@ -1,5 +1,6 @@
 "use client";
 
+import { type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/locale-context";
 import { useInView } from "@/lib/use-in-view";
@@ -63,7 +64,7 @@ function IconWrench() {
 // ── Service card data ─────────────────────────────────────────────────────────
 
 type ServiceItem = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   desc: string;
   features: string[];
