@@ -1,12 +1,16 @@
+import "dotenv/config";
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
-import path from "path";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 async function seedAdmin() {
-  const dbPath = path.resolve(process.cwd(), "dev.db");
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is not set. Copy .env.example to .env and fill in the values.");
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const adapter = new PrismaLibSql({ url: `file:${dbPath}` } as any);
+  const adapter = new PrismaPg({ connectionString } as any);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = new PrismaClient({ adapter } as any);
 
@@ -32,4 +36,7 @@ async function seedAdmin() {
   await db.$disconnect();
 }
 
-seedAdmin().catch(console.error);
+seedAdmin().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

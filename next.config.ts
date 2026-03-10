@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
       { pathname: "/uploads/**" },
     ],
   },
-  serverExternalPackages: ["@prisma/client", "@libsql/client", "bcryptjs"],
+  serverExternalPackages: ["@prisma/client", "pg", "bcryptjs"],
 };
 
 export default nextConfig;
