@@ -1,13 +1,25 @@
--- AlterTable: add telegram (required) and phone (optional) to ContactMessage
--- Make name and message optional as per schema
+-- Idempotent migration: add telegram and phone columns, make name/message nullable
 
--- Step 1: add telegram with a default so existing rows don't fail
-ALTER TABLE "ContactMessage" ADD COLUMN "telegram" TEXT NOT NULL DEFAULT '';
-ALTER TABLE "ContactMessage" ADD COLUMN "phone" TEXT;
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'ContactMessage' AND column_name = 'telegram'
+  ) THEN
+    ALTER TABLE "ContactMessage" ADD COLUMN "telegram" TEXT NOT NULL DEFAULT '';
+    ALTER TABLE "ContactMessage" ALTER COLUMN "telegram" DROP DEFAULT;
+  END IF;
+END $$;
 
--- Step 2: remove the default (Prisma manages required columns without defaults)
-ALTER TABLE "ContactMessage" ALTER COLUMN "telegram" DROP DEFAULT;
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'ContactMessage' AND column_name = 'phone'
+  ) THEN
+    ALTER TABLE "ContactMessage" ADD COLUMN "phone" TEXT;
+  END IF;
+END $$;
 
--- Step 3: make name and message nullable
 ALTER TABLE "ContactMessage" ALTER COLUMN "name" DROP NOT NULL;
 ALTER TABLE "ContactMessage" ALTER COLUMN "message" DROP NOT NULL;
