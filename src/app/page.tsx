@@ -7,6 +7,7 @@ import ProjectsSection from "@/components/sections/ProjectsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import FooterLinks from "@/components/FooterLinks";
 
 // Always render on request, never statically at build time
 export const dynamic = "force-dynamic";
@@ -92,6 +93,9 @@ export default async function Home() {
         <footer className="relative z-10 py-8 text-center text-gray-600 text-sm border-t border-white/5">
           <p>
             © {new Date().getFullYear()} {PORTFOLIO_CONFIG.name}. All rights reserved.
+          </p>
+          <p className="mt-2">
+            <FooterLinks />
           </p>
         </footer>
       </main>
