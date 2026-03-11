@@ -66,6 +66,17 @@ export default function ContactSection() {
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3">{t.contact.title}</h2>
           <p className="text-gray-400 mt-4 text-lg">{t.contact.subtitle}</p>
+          <p className="text-gray-500 mt-3 text-sm">
+            {t.contact.or_telegram}{" "}
+            <a
+              href="https://t.me/roderen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:text-indigo-300 transition-colors font-mono"
+            >
+              @roderen
+            </a>
+          </p>
         </motion.div>
 
         <motion.form
