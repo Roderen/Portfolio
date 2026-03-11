@@ -7,12 +7,11 @@ import { useInView } from "@/lib/use-in-view";
 
 interface AboutSectionProps {
   name: string;
-  bio: string;
   photoUrl?: string;
   skills?: string[];
 }
 
-export default function AboutSection({ name, bio, photoUrl, skills }: AboutSectionProps) {
+export default function AboutSection({ name, photoUrl, skills }: AboutSectionProps) {
   const { t } = useLocale();
   const { ref, inView } = useInView(0.2);
 
@@ -61,7 +60,7 @@ export default function AboutSection({ name, bio, photoUrl, skills }: AboutSecti
             transition={{ duration: 0.6, delay: 0.3 }}
             className={`${!photoUrl ? "max-w-2xl text-center mx-auto" : "flex-1"}`}
           >
-            <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">{bio}</p>
+            <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">{t.about.bio}</p>
 
             {skills && skills.length > 0 && (
               <div className="mt-8 flex flex-wrap gap-2">

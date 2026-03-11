@@ -14,15 +14,7 @@ export const dynamic = "force-dynamic";
 
 // ─── CUSTOMIZE YOUR INFO HERE ───────────────────────────────────────────────
 const PORTFOLIO_CONFIG = {
-  name: "Your Name",
-  role: "Full-Stack Web Developer",
-  subtitle: "I build modern, fast, and beautiful websites for small businesses",
-  bio: `I'm a full-stack web developer passionate about creating clean, performant,
-and user-friendly web applications. I specialize in building modern websites
-for small businesses that help them grow online.
-
-Whether you need a landing page, e-commerce store, or a custom web app —
-I've got you covered.`,
+  name: "Maksym Vereshchahin",
   // Set photoUrl to null to hide photo, or to a path like "/photo.jpg"
   photoUrl: null as string | null,
   // Your core tech skills shown in About section
@@ -61,15 +53,12 @@ export default async function Home() {
       <main className="relative z-10">
         <HeroSection
           name={PORTFOLIO_CONFIG.name}
-          role={PORTFOLIO_CONFIG.role}
-          subtitle={PORTFOLIO_CONFIG.subtitle}
         />
 
         <div className="section-separator" />
 
         <AboutSection
           name={PORTFOLIO_CONFIG.name}
-          bio={PORTFOLIO_CONFIG.bio}
           photoUrl={PORTFOLIO_CONFIG.photoUrl ?? undefined}
           skills={PORTFOLIO_CONFIG.skills}
         />

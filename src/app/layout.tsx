@@ -3,10 +3,11 @@ import "./globals.css";
 import { LocaleProvider } from "@/lib/locale-context";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Web Developer",
-  description: "Full-Stack Web Developer portfolio — modern websites for businesses",
+  title: "corweb | Maksym Vereshchahin",
+  description: "Maksym Vereshchahin — Full-Stack Web Developer. Modern websites for businesses. corweb.dev",
   openGraph: {
     type: "website",
+    url: "https://corweb.dev",
     locale: "en_US",
   },
 };

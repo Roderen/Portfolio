@@ -62,25 +62,36 @@ export default function ContactSection() {
           className="text-center mb-12"
         >
           <span className="text-indigo-400 text-sm font-mono uppercase tracking-widest">
-            — Contact —
+            — {t.contact.badge} —
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3">{t.contact.title}</h2>
           <p className="text-gray-400 mt-4 text-lg">{t.contact.subtitle}</p>
-          <p className="text-gray-500 mt-3 text-sm flex items-center justify-center gap-2">
-            {t.contact.or_telegram}
-            <a
-              href="https://t.me/roderen"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-400 hover:text-indigo-300 transition-colors"
-              aria-label="Telegram @roderen"
-            >
-              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                <rect width="24" height="24" rx="5" fill="currentColor"/>
-                <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" fill="white"/>
-              </svg>
-            </a>
-          </p>
+          <div className="flex flex-col items-center gap-2 mt-3">
+            <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
+              {t.contact.or_telegram}
+              <a
+                href="https://t.me/roderen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                aria-label="Telegram @roderen"
+              >
+                <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+                  <rect width="24" height="24" rx="5" fill="currentColor"/>
+                  <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" fill="white"/>
+                </svg>
+              </a>
+            </p>
+            <p className="text-gray-500 text-sm flex items-center justify-center gap-2">
+              {t.contact.or_email}
+              <a
+                href="mailto:relvarnes@gmail.com"
+                className="text-indigo-400 hover:text-indigo-300 transition-colors font-mono"
+              >
+                relvarnes@gmail.com
+              </a>
+            </p>
+          </div>
         </motion.div>
 
         <motion.form

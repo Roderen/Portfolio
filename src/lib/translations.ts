@@ -19,16 +19,21 @@ export const translations = {
     about: {
       title: "About Me",
       badge: "Developer",
+      bio: `I'm a full-stack web developer passionate about creating clean, performant, and user-friendly web applications. I specialize in building modern websites for small businesses that help them grow online.
+
+Whether you need a landing page, e-commerce store, or a custom web app — I've got you covered.`,
     },
     projects: {
       title: "My Projects",
       subtitle: "A selection of my recent work",
       view: "View Project",
       no_projects: "Projects coming soon",
+      badge: "Portfolio",
     },
     contact: {
       title: "Get in Touch",
       subtitle: "Have a project in mind? Let's talk.",
+      badge: "Contact",
       optional: "optional",
       label_name: "Name",
       label_telegram: "Telegram",
@@ -41,6 +46,7 @@ export const translations = {
       email: "your@email.com",
       message: "Tell me about your project...",
       or_telegram: "or write directly:",
+      or_email: "or email:",
       send: "Send Message",
       sending: "Sending...",
       success: "Message sent! I'll get back to you soon.",
@@ -148,16 +154,21 @@ export const translations = {
     about: {
       title: "Обо мне",
       badge: "Разработчик",
+      bio: `Я full-stack веб-разработчик, увлечённый созданием чистых, производительных и удобных веб-приложений. Специализируюсь на разработке современных сайтов для малого бизнеса, которые помогают расти в интернете.
+
+Нужен лендинг, интернет-магазин или кастомное веб-приложение — я готов помочь.`,
     },
     projects: {
       title: "Мои проекты",
       subtitle: "Подборка моих последних работ",
       view: "Смотреть проект",
       no_projects: "Проекты скоро появятся",
+      badge: "Портфолио",
     },
     contact: {
       title: "Связаться со мной",
       subtitle: "Есть проект? Давайте обсудим.",
+      badge: "Контакт",
       optional: "необязательно",
       label_name: "Имя",
       label_telegram: "Telegram",
@@ -170,6 +181,7 @@ export const translations = {
       email: "ваш@email.com",
       message: "Расскажите о вашем проекте...",
       or_telegram: "или напишите напрямую:",
+      or_email: "или по почте:",
       send: "Отправить",
       sending: "Отправка...",
       success: "Сообщение отправлено! Я свяжусь с вами в ближайшее время.",
@@ -277,16 +289,21 @@ export const translations = {
     about: {
       title: "Про мене",
       badge: "Розробник",
+      bio: `Я full-stack веб-розробник, захоплений створенням чистих, продуктивних та зручних веб-додатків. Спеціалізуюсь на розробці сучасних сайтів для малого бізнесу, що допомагають рости в інтернеті.
+
+Потрібен лендинг, інтернет-магазин або кастомний веб-додаток — я готовий допомогти.`,
     },
     projects: {
       title: "Мої проєкти",
       subtitle: "Вибірка моїх останніх робіт",
       view: "Переглянути проєкт",
       no_projects: "Проєкти з'являться незабаром",
+      badge: "Портфоліо",
     },
     contact: {
       title: "Зв'яжіться зі мною",
       subtitle: "Є проєкт? Давайте обговоримо.",
+      badge: "Контакт",
       optional: "необов'язково",
       label_name: "Ім'я",
       label_telegram: "Telegram",
@@ -299,6 +316,7 @@ export const translations = {
       email: "ваш@email.com",
       message: "Розкажіть про ваш проєкт...",
       or_telegram: "або напишіть напряму:",
+      or_email: "або на пошту:",
       send: "Надіслати",
       sending: "Надсилання...",
       success: "Повідомлення надіслано! Я зв'яжусь з вами найближчим часом.",
@@ -406,16 +424,21 @@ export const translations = {
     about: {
       title: "Über mich",
       badge: "Entwickler",
+      bio: `Ich bin ein Full-Stack-Webentwickler mit einer Leidenschaft für saubere, performante und benutzerfreundliche Webanwendungen. Ich spezialisiere mich auf moderne Websites für kleine Unternehmen, die ihnen helfen, online zu wachsen.
+
+Ob Landingpage, Online-Shop oder individuelle Web-App — ich bin für Sie da.`,
     },
     projects: {
       title: "Meine Projekte",
       subtitle: "Eine Auswahl meiner aktuellen Arbeiten",
       view: "Projekt ansehen",
       no_projects: "Projekte folgen bald",
+      badge: "Portfolio",
     },
     contact: {
       title: "Kontakt aufnehmen",
       subtitle: "Haben Sie ein Projekt? Lassen Sie uns sprechen.",
+      badge: "Kontakt",
       optional: "optional",
       label_name: "Name",
       label_telegram: "Telegram",
@@ -428,6 +451,7 @@ export const translations = {
       email: "ihre@email.de",
       message: "Erzählen Sie von Ihrem Projekt...",
       or_telegram: "oder schreiben Sie direkt:",
+      or_email: "oder per E-Mail:",
       send: "Nachricht senden",
       sending: "Wird gesendet...",
       success: "Nachricht gesendet! Ich melde mich bald bei Ihnen.",

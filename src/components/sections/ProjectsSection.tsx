@@ -32,7 +32,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           className="text-center mb-16"
         >
           <span className="text-indigo-400 text-sm font-mono uppercase tracking-widest">
-            — Portfolio —
+            — {t.projects.badge} —
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-3">{t.projects.title}</h2>
           <p className="text-gray-400 mt-4 text-lg">{t.projects.subtitle}</p>

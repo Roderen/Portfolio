@@ -45,7 +45,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          {"<Dev />"}
+          {"<corweb />"}
         </motion.span>
 
         {/* Desktop nav */}
