@@ -21,14 +21,21 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const { t } = useLocale();
 
+  const url = project.liveUrl
+    ? project.liveUrl.startsWith("http") ? project.liveUrl : `https://${project.liveUrl}`
+    : null;
+
   return (
-    <motion.div
+    <motion.a
+      href={url ?? undefined}
+      target={url ? "_blank" : undefined}
+      rel={url ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -6 }}
-      className="group relative bg-gray-900/60 backdrop-blur-sm border border-white/8 rounded-2xl overflow-hidden hover:border-indigo-500/30 transition-all duration-300"
+      className={`group relative bg-gray-900/60 backdrop-blur-sm border border-white/8 rounded-2xl overflow-hidden hover:border-indigo-500/30 transition-all duration-300 block${url ? " cursor-pointer" : ""}`}
     >
       {/* Glow on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-cyan-500/0 group-hover:from-indigo-500/5 group-hover:to-cyan-500/5 transition-all duration-500 rounded-2xl" />
@@ -82,31 +89,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* CTA */}
-        {project.liveUrl ? (
-          <motion.a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-semibold text-white bg-indigo-600/80 hover:bg-indigo-600 px-4 py-2.5 rounded-xl w-full justify-center transition-colors"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
+        {url ? (
+          <div className="flex items-center gap-2 text-sm font-semibold text-white bg-indigo-600/80 group-hover:bg-indigo-600 px-4 py-2.5 rounded-xl w-full justify-center transition-colors">
             {t.projects.view}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </motion.a>
+          </div>
         ) : (
           <div className="flex items-center gap-2 text-sm text-gray-600 px-4 py-2.5 rounded-xl w-full justify-center bg-gray-800/50">
             {t.projects.view}
           </div>
         )}
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
