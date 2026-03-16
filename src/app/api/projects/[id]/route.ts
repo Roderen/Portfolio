@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const updateSchema = z.object({
   title: z.string().min(1).optional(),
-  description: z.string().min(1).optional(),
+  description: z.string().optional(),
   imageUrl: z.string().optional().nullable(),
   liveUrl: z.string().optional().nullable(),
   skills: z.array(z.string()).optional(),
