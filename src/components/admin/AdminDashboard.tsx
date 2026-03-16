@@ -49,6 +49,15 @@ export default function AdminDashboard({
     setProjects((prev) => prev.filter((p) => p.id !== id));
   }
 
+  async function handleReorder(reordered: Project[]) {
+    setProjects(reordered);
+    await fetch("/api/admin/reorder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: reordered.map((p) => p.id) }),
+    });
+  }
+
   async function handleToggleVisibility(id: number, visible: boolean) {
     const res = await fetch(`/api/projects/${id}`, {
       method: "PUT",
@@ -198,6 +207,7 @@ export default function AdminDashboard({
               onEdit={handleEditProject}
               onDelete={handleDeleteProject}
               onToggleVisibility={handleToggleVisibility}
+              onReorder={handleReorder}
             />
           </div>
         )}
