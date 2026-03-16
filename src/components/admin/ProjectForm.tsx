@@ -57,8 +57,8 @@ export default function ProjectForm({ project, onSave, onClose }: ProjectFormPro
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!title || !description) {
-      setError("Title and description are required");
+    if (!title) {
+      setError("Title is required");
       return;
     }
     if (skills.length === 0) {
@@ -174,7 +174,7 @@ export default function ProjectForm({ project, onSave, onClose }: ProjectFormPro
           {/* Description */}
           <div>
             <label className="block text-sm text-gray-400 mb-1.5">
-              Description <span className="text-red-400">*</span>
+              Description <span className="text-gray-600 text-xs font-normal">(optional)</span>
             </label>
             <textarea
               value={description}

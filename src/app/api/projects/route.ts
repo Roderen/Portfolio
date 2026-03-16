@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const projectSchema = z.object({
   title: z.string().min(1),
-  description: z.string().min(1),
+  description: z.string().optional().default(""),
   imageUrl: z.string().optional().nullable(),
   liveUrl: z.string().url().optional().nullable().or(z.literal("")),
   skills: z.array(z.string()),
