@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import { put } from "@vercel/blob";
 
 export async function POST(req: NextRequest) {
   const session = await getAdminSession();
@@ -21,16 +20,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
   }
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const uploadDir = path.join(process.cwd(), "public/uploads");
-  await mkdir(uploadDir, { recursive: true });
-
   const ext = file.name.split(".").pop();
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-  const filepath = path.join(uploadDir, filename);
-  await writeFile(filepath, buffer);
+  const filename = `projects/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-  return NextResponse.json({ url: `/uploads/${filename}` });
+  const blob = await put(filename, file, { access: "public" });
+
+  return NextResponse.json({ url: blob.url });
 }
