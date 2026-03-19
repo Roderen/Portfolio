@@ -37,3 +37,9 @@ model AdminUser {
   password  String
   createdAt DateTime @default(now())
 }
+
+// Single-row table for site-wide settings (id is always 1)
+model SiteSettings {
+  id       Int     @id @default(1)
+  photoUrl String?
+}

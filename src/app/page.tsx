@@ -15,8 +15,6 @@ export const dynamic = "force-dynamic";
 // ─── CUSTOMIZE YOUR INFO HERE ───────────────────────────────────────────────
 const PORTFOLIO_CONFIG = {
   name: "Maksym Vereshchahin",
-  // Set photoUrl to null to hide photo, or to a path like "/photo.jpg"
-  photoUrl: null as string | null,
   // Your core tech skills shown in About section
   skills: [
     "React",
@@ -31,19 +29,18 @@ const PORTFOLIO_CONFIG = {
 };
 // ────────────────────────────────────────────────────────────────────────────
 
-async function getProjects() {
-  const projects = await db.project.findMany({
-    where: { visible: true },
-    orderBy: { order: "asc" },
-  });
-  return projects.map((p) => ({
-    ...p,
-    skills: JSON.parse(p.skills) as string[],
-  }));
+async function getPageData() {
+  const [projects, settings] = await Promise.all([
+    db.project
+      .findMany({ where: { visible: true }, orderBy: { order: "asc" } })
+      .then((ps) => ps.map((p) => ({ ...p, skills: JSON.parse(p.skills) as string[] }))),
+    db.siteSettings.findUnique({ where: { id: 1 } }),
+  ]);
+  return { projects, photoUrl: settings?.photoUrl ?? null };
 }
 
 export default async function Home() {
-  const projects = await getProjects();
+  const { projects, photoUrl } = await getPageData();
 
   return (
     <div className="relative min-h-screen text-white">
@@ -59,7 +56,7 @@ export default async function Home() {
 
         <AboutSection
           name={PORTFOLIO_CONFIG.name}
-          photoUrl={PORTFOLIO_CONFIG.photoUrl ?? undefined}
+          photoUrl={photoUrl ?? undefined}
           skills={PORTFOLIO_CONFIG.skills}
         />
 

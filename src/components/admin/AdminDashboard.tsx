@@ -6,16 +6,19 @@ import { useRouter } from "next/navigation";
 import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 import MessageList from "./MessageList";
+import SettingsPanel from "./SettingsPanel";
 import { Project, ContactMessage as Message } from "@/lib/types";
 
-type Tab = "projects" | "messages";
+type Tab = "projects" | "messages" | "settings";
 
 export default function AdminDashboard({
   initialProjects,
   initialMessages,
+  initialPhotoUrl,
 }: {
   initialProjects: Project[];
   initialMessages: Message[];
+  initialPhotoUrl: string | null;
 }) {
   const router = useRouter();
   const [tab, setTab] = useState<Tab>("projects");
@@ -158,7 +161,7 @@ export default function AdminDashboard({
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6">
-          {(["projects", "messages"] as Tab[]).map((t) => (
+          {(["projects", "messages", "settings"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -218,6 +221,10 @@ export default function AdminDashboard({
             onMarkRead={handleMarkRead}
             onDelete={handleDeleteMessage}
           />
+        )}
+
+        {tab === "settings" && (
+          <SettingsPanel initialPhotoUrl={initialPhotoUrl} />
         )}
       </main>
 
