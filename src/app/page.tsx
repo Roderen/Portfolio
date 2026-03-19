@@ -6,6 +6,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
+import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import FooterLinks from "@/components/FooterLinks";
 
@@ -71,6 +72,10 @@ export default async function Home() {
         <div className="section-separator" />
 
         <ProjectsSection projects={projects} />
+
+        <div className="section-separator" />
+
+        <FAQSection />
 
         <div className="section-separator" />
 

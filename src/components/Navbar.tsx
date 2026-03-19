@@ -21,6 +21,7 @@ export default function Navbar() {
     { label: t.nav.services, href: "#services" },
     { label: t.nav.process, href: "#process" },
     { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.faq, href: "#faq" },
     { label: t.nav.contact, href: "#contact" },
   ];
 
