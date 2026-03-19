@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import { Locale, translations } from "./translations";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,26 +14,19 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
-function getBrowserLocale(): Locale {
-  if (typeof navigator === "undefined") return "en";
-  const lang = navigator.language.toLowerCase();
-  if (lang.startsWith("ru")) return "ru";
-  if (lang.startsWith("uk")) return "uk";
-  if (lang.startsWith("de") || lang.startsWith("ch")) return "de";
-  return "en";
-}
-
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("portfolio-locale") as Locale | null;
-    setLocaleState(saved || getBrowserLocale());
-  }, []);
+export function LocaleProvider({
+  children,
+  initialLocale,
+}: {
+  children: ReactNode;
+  initialLocale: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   function setLocale(newLocale: Locale) {
     setLocaleState(newLocale);
-    localStorage.setItem("portfolio-locale", newLocale);
+    // Persist as a cookie so the server uses it on the next request
+    document.cookie = `portfolio-locale=${newLocale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
   }
 
   return (

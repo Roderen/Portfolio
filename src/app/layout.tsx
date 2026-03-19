@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/locale-context";
+import { cookies } from "next/headers";
+import { Locale } from "@/lib/translations";
+
+const SUPPORTED: Locale[] = ["en", "ru", "uk", "de"];
 
 export const metadata: Metadata = {
   title: "corweb | Maksym Vereshchahin",
@@ -12,15 +16,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jar = await cookies();
+  const raw = jar.get("portfolio-locale")?.value;
+  const initialLocale: Locale = SUPPORTED.includes(raw as Locale) ? (raw as Locale) : "en";
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={initialLocale} suppressHydrationWarning>
       <body className="antialiased bg-gray-950">
-        <LocaleProvider>{children}</LocaleProvider>
+        <LocaleProvider initialLocale={initialLocale}>{children}</LocaleProvider>
       </body>
     </html>
   );
