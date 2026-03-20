@@ -150,6 +150,7 @@ export default function PhotoCropModal({ file, onApply, onCancel }: Props) {
                   position: "absolute",
                   width: naturalSize.w * effectiveScale,
                   height: naturalSize.h * effectiveScale,
+                  maxWidth: "none",   // override Tailwind preflight max-width: 100%
                   left: CONTAINER / 2 + offset.x - (naturalSize.w * effectiveScale) / 2,
                   top: CONTAINER / 2 + offset.y - (naturalSize.h * effectiveScale) / 2,
                   userSelect: "none",
