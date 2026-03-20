@@ -22,6 +22,13 @@ export default async function AdminPage() {
       initialProjects={projects}
       initialMessages={messages}
       initialPhotoUrl={settings?.photoUrl ?? null}
+      initialContent={{
+        heroName: settings?.heroName ?? null,
+        heroRole: settings?.heroRole ?? null,
+        heroSubtitle: settings?.heroSubtitle ?? null,
+        aboutBio: settings?.aboutBio ?? null,
+        aboutSkills: settings?.aboutSkills ?? null,
+      }}
     />
   );
 }

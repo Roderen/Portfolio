@@ -37,11 +37,20 @@ async function getPageData() {
       .then((ps) => ps.map((p) => ({ ...p, skills: JSON.parse(p.skills) as string[] }))),
     db.siteSettings.findUnique({ where: { id: 1 } }),
   ]);
-  return { projects, photoUrl: settings?.photoUrl ?? null };
+  return { projects, settings };
 }
 
 export default async function Home() {
-  const { projects, photoUrl } = await getPageData();
+  const { projects, settings } = await getPageData();
+
+  const heroName = settings?.heroName || PORTFOLIO_CONFIG.name;
+  const heroRole = settings?.heroRole || undefined;
+  const heroSubtitle = settings?.heroSubtitle || undefined;
+  const aboutBio = settings?.aboutBio || undefined;
+  const aboutSkills = settings?.aboutSkills
+    ? (JSON.parse(settings.aboutSkills) as string[])
+    : PORTFOLIO_CONFIG.skills;
+  const photoUrl = settings?.photoUrl ?? undefined;
 
   return (
     <div className="relative min-h-screen text-white">
@@ -50,15 +59,18 @@ export default async function Home() {
 
       <main className="relative z-10">
         <HeroSection
-          name={PORTFOLIO_CONFIG.name}
+          name={heroName}
+          role={heroRole}
+          subtitle={heroSubtitle}
         />
 
         <div className="section-separator" />
 
         <AboutSection
-          name={PORTFOLIO_CONFIG.name}
-          photoUrl={photoUrl ?? undefined}
-          skills={PORTFOLIO_CONFIG.skills}
+          name={heroName}
+          photoUrl={photoUrl}
+          skills={aboutSkills}
+          bio={aboutBio}
         />
 
         <div className="section-separator" />
@@ -83,7 +95,7 @@ export default async function Home() {
 
         <footer className="relative z-10 py-8 text-center text-gray-600 text-sm border-t border-white/5">
           <p>
-            © {new Date().getFullYear()} {PORTFOLIO_CONFIG.name}. All rights reserved.
+            © {new Date().getFullYear()} {heroName}. All rights reserved.
           </p>
           <p className="mt-2">
             <FooterLinks />
