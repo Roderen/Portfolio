@@ -18,14 +18,18 @@ const PORTFOLIO_CONFIG = {
   name: "Maksym Vereshchahin",
   // Your core tech skills shown in About section
   skills: [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
     "React",
     "Next.js",
-    "TypeScript",
     "Node.js",
+    "REST API",
     "PostgreSQL",
+    "Telegram Bots",
+    "Adaptive Design",
     "Tailwind CSS",
-    "Prisma",
-    "Docker",
   ],
 };
 // ────────────────────────────────────────────────────────────────────────────

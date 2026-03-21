@@ -12,7 +12,7 @@ export const translations = {
     },
     hero: {
       greeting: "Hi, I'm",
-      role: "Full-Stack Web Developer",
+      role: "Web Developer",
       subtitle: "I build modern, fast, and beautiful websites for businesses",
       cta_projects: "View Projects",
       cta_contact: "Get in Touch",
@@ -20,9 +20,9 @@ export const translations = {
     about: {
       title: "About Me",
       badge: "Developer",
-      bio: `I'm a full-stack web developer passionate about creating clean, performant, and user-friendly web applications. I specialize in building modern websites for small businesses that help them grow online.
+      bio: `I'm a web developer passionate about creating clean, performant, and user-friendly web applications. I specialize in building modern websites for small businesses that help them grow online.
 
-Whether you need a landing page, e-commerce store, or a custom web app — I've got you covered.`,
+Whether you need a landing page, e-commerce store, or a web app — I've got you covered.`,
     },
     projects: {
       title: "My Projects",
@@ -161,7 +161,7 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     },
     hero: {
       greeting: "Привет, я",
-      role: "Full-Stack веб-разработчик",
+      role: "Веб-разработчик",
       subtitle: "Создаю современные, быстрые и красивые сайты для бизнеса",
       cta_projects: "Смотреть проекты",
       cta_contact: "Связаться",
@@ -169,9 +169,9 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     about: {
       title: "Обо мне",
       badge: "Разработчик",
-      bio: `Я full-stack веб-разработчик, увлечённый созданием чистых, производительных и удобных веб-приложений. Специализируюсь на разработке современных сайтов для малого бизнеса, которые помогают расти в интернете.
+      bio: `Я веб-разработчик, увлечённый созданием чистых, производительных и удобных веб-приложений. Специализируюсь на разработке современных сайтов для малого бизнеса, которые помогают расти в интернете.
 
-Нужен лендинг, интернет-магазин или кастомное веб-приложение — я готов помочь.`,
+Нужен лендинг, интернет-магазин или веб-приложение — я готов помочь.`,
     },
     projects: {
       title: "Мои проекты",
@@ -310,7 +310,7 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     },
     hero: {
       greeting: "Привіт, я",
-      role: "Full-Stack веб-розробник",
+      role: "Веб-розробник",
       subtitle: "Створюю сучасні, швидкі та красиві сайти для бізнесу",
       cta_projects: "Дивитися проєкти",
       cta_contact: "Зв'язатися",
@@ -318,9 +318,9 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     about: {
       title: "Про мене",
       badge: "Розробник",
-      bio: `Я full-stack веб-розробник, захоплений створенням чистих, продуктивних та зручних веб-додатків. Спеціалізуюсь на розробці сучасних сайтів для малого бізнесу, що допомагають рости в інтернеті.
+      bio: `Я веб-розробник, захоплений створенням чистих, продуктивних та зручних веб-додатків. Спеціалізуюсь на розробці сучасних сайтів для малого бізнесу, що допомагають рости в інтернеті.
 
-Потрібен лендинг, інтернет-магазин або кастомний веб-додаток — я готовий допомогти.`,
+Потрібен лендинг, інтернет-магазин або веб-додаток — я готовий допомогти.`,
     },
     projects: {
       title: "Мої проєкти",
@@ -459,7 +459,7 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     },
     hero: {
       greeting: "Hallo, ich bin",
-      role: "Full-Stack Webentwickler",
+      role: "Webentwickler",
       subtitle: "Ich erstelle moderne, schnelle und ansprechende Websites für Unternehmen",
       cta_projects: "Projekte ansehen",
       cta_contact: "Kontakt aufnehmen",
@@ -467,9 +467,9 @@ Whether you need a landing page, e-commerce store, or a custom web app — I've 
     about: {
       title: "Über mich",
       badge: "Entwickler",
-      bio: `Ich bin ein Full-Stack-Webentwickler mit einer Leidenschaft für saubere, performante und benutzerfreundliche Webanwendungen. Ich spezialisiere mich auf moderne Websites für kleine Unternehmen, die ihnen helfen, online zu wachsen.
+      bio: `Ich bin ein Webentwickler mit einer Leidenschaft für saubere, performante und benutzerfreundliche Webanwendungen. Ich spezialisiere mich auf moderne Websites für kleine Unternehmen, die ihnen helfen, online zu wachsen.
 
-Ob Landingpage, Online-Shop oder individuelle Web-App — ich bin für Sie da.`,
+Ob Landingpage, Online-Shop oder Web-App — ich bin für Sie da.`,
     },
     projects: {
       title: "Meine Projekte",
