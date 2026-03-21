@@ -30,6 +30,7 @@ const PORTFOLIO_CONFIG = {
     "Telegram Bots",
     "Adaptive Design",
     "Tailwind CSS",
+    "WordPress",
   ],
 };
 // ────────────────────────────────────────────────────────────────────────────

@@ -36,23 +36,6 @@ function IconCart() {
   );
 }
 
-function IconApi() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  );
-}
-
-function IconCloud() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-    </svg>
-  );
-}
-
 function IconWrench() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
@@ -103,24 +86,6 @@ function getServices(t: TranslationKeys): ServiceItem[] {
       accent: "text-violet-400",
     },
     {
-      icon: <IconApi />,
-      title: t.services.s4_title,
-      desc: t.services.s4_desc,
-      features: [t.services.s4_f1, t.services.s4_f2, t.services.s4_f3, t.services.s4_f4],
-      gradient: "from-emerald-500/20 to-emerald-500/5",
-      border: "border-emerald-500/20",
-      accent: "text-emerald-400",
-    },
-    {
-      icon: <IconCloud />,
-      title: t.services.s5_title,
-      desc: t.services.s5_desc,
-      features: [t.services.s5_f1, t.services.s5_f2, t.services.s5_f3, t.services.s5_f4],
-      gradient: "from-sky-500/20 to-sky-500/5",
-      border: "border-sky-500/20",
-      accent: "text-sky-400",
-    },
-    {
       icon: <IconWrench />,
       title: t.services.s6_title,
       desc: t.services.s6_desc,
@@ -157,7 +122,7 @@ export default function ServicesSection() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
