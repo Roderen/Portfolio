@@ -7,21 +7,18 @@ import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 import MessageList from "./MessageList";
 import SettingsPanel from "./SettingsPanel";
-import ContentPanel, { ContentData } from "./ContentPanel";
 import { Project, ContactMessage as Message } from "@/lib/types";
 
-type Tab = "projects" | "messages" | "settings" | "content";
+type Tab = "projects" | "messages" | "settings";
 
 export default function AdminDashboard({
   initialProjects,
   initialMessages,
   initialPhotoUrl,
-  initialContent,
 }: {
   initialProjects: Project[];
   initialMessages: Message[];
   initialPhotoUrl: string | null;
-  initialContent: ContentData;
 }) {
   const router = useRouter();
   const [tab, setTab] = useState<Tab>("projects");
@@ -164,7 +161,7 @@ export default function AdminDashboard({
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6">
-          {(["projects", "messages", "content", "settings"] as Tab[]).map((t) => (
+          {(["projects", "messages", "settings"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -224,10 +221,6 @@ export default function AdminDashboard({
             onMarkRead={handleMarkRead}
             onDelete={handleDeleteMessage}
           />
-        )}
-
-        {tab === "content" && (
-          <ContentPanel initialContent={initialContent} />
         )}
 
         {tab === "settings" && (

@@ -6,7 +6,7 @@ import { getAdminSession } from "@/lib/auth";
 async function getOrCreateSettings() {
   return db.siteSettings.upsert({
     where: { id: 1 },
-    create: { id: 1 },
+    create: { id: 1, photoUrl: null },
     update: {},
   });
 }
@@ -23,19 +23,12 @@ export async function PUT(req: NextRequest) {
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const body = await req.json() as {
-    photoUrl?: string | null;
-    heroName?: string | null;
-    heroRole?: string | null;
-    heroSubtitle?: string | null;
-    aboutBio?: string | null;
-    aboutSkills?: string | null;
-  };
+  const { photoUrl } = await req.json() as { photoUrl: string | null };
 
   const settings = await db.siteSettings.upsert({
     where: { id: 1 },
-    create: { id: 1, ...body },
-    update: body,
+    create: { id: 1, photoUrl },
+    update: { photoUrl },
   });
 
   return NextResponse.json(settings);
