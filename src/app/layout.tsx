@@ -3,6 +3,7 @@ import "./globals.css";
 import { LocaleProvider } from "@/lib/locale-context";
 import { cookies } from "next/headers";
 import { Locale } from "@/lib/translations";
+import { Analytics } from "@vercel/analytics/next";
 
 const SUPPORTED: Locale[] = ["en", "ru", "uk", "de"];
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
     <html lang={initialLocale} suppressHydrationWarning>
       <body className="antialiased bg-gray-950">
         <LocaleProvider initialLocale={initialLocale}>{children}</LocaleProvider>
+        <Analytics />
       </body>
     </html>
   );
