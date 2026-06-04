@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useLocale } from "@/lib/locale-context";
 import { useInView } from "@/lib/use-in-view";
+import toast from "react-hot-toast";
 
 const schema = z.object({
   name: z.string().optional(),
@@ -41,14 +42,34 @@ export default function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+
       if (res.ok) {
         setStatus("success");
+        toast.success(t.contact.success, {
+          duration: 5000,
+          icon: "✅",
+        });
         reset();
+        // Reset status after animation
+        setTimeout(() => setStatus("idle"), 500);
+      } else if (res.status === 429) {
+        // Rate limit exceeded
+        const errorData = await res.json().catch(() => ({}));
+        const retryAfter = errorData.retryAfter || 3600;
+        const minutes = Math.ceil(retryAfter / 60);
+        toast.error(
+          t.contact.rateLimitError?.replace("{minutes}", minutes.toString()) ||
+          `Too many requests. Please try again in ${minutes} minutes.`,
+          { duration: 6000, icon: "⏱️" }
+        );
+        setStatus("error");
       } else {
         setStatus("error");
+        toast.error(t.contact.error, { duration: 4000, icon: "❌" });
       }
     } catch {
       setStatus("error");
+      toast.error(t.contact.error, { duration: 4000, icon: "❌" });
     }
   }
 
@@ -172,28 +193,6 @@ export default function ContactSection() {
               className={`${inputClass} resize-none`}
             />
           </div>
-
-          {status === "success" && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-sm"
-            >
-              <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                />
-              </svg>
-              {t.contact.success}
-            </motion.div>
-          )}
-
-          {status === "error" && (
-            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
-              {t.contact.error}
-            </div>
-          )}
 
           <motion.button
             type="submit"

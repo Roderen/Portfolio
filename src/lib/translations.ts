@@ -52,6 +52,7 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
       sending: "Sending...",
       success: "Message sent! I'll get back to you soon.",
       error: "Something went wrong. Please try again.",
+      rateLimitError: "Too many requests. Please try again in {minutes} minutes.",
     },
     services: {
       badge: "Services",
@@ -118,6 +119,13 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
     footer: {
       rights: "All rights reserved.",
       privacy: "Privacy Policy",
+    },
+    notFound: {
+      title: "Page Not Found",
+      description: "The page you're looking for doesn't exist or has been moved.",
+      backHome: "← Back to Home",
+      contact: "Contact Me",
+      help: "Need help? Feel free to reach out through the contact form.",
     },
     privacy: {
       title: "Privacy Policy",
@@ -189,6 +197,7 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
       sending: "Отправка...",
       success: "Сообщение отправлено! Я свяжусь с вами в ближайшее время.",
       error: "Что-то пошло не так. Попробуйте ещё раз.",
+      rateLimitError: "Слишком много запросов. Попробуйте снова через {minutes} минут.",
     },
     services: {
       badge: "Услуги",
@@ -255,6 +264,13 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
     footer: {
       rights: "Все права защищены.",
       privacy: "Политика конфиденциальности",
+    },
+    notFound: {
+      title: "Страница не найдена",
+      description: "Страница, которую вы ищете, не существует или была перемещена.",
+      backHome: "← На главную",
+      contact: "Связаться со мной",
+      help: "Нужна помощь? Свяжитесь со мной через форму обратной связи.",
     },
     privacy: {
       title: "Политика конфиденциальности",
@@ -326,6 +342,7 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
       sending: "Надсилання...",
       success: "Повідомлення надіслано! Я зв'яжусь з вами найближчим часом.",
       error: "Щось пішло не так. Спробуйте ще раз.",
+      rateLimitError: "Занадто багато запитів. Спробуйте знову через {minutes} хвилин.",
     },
     services: {
       badge: "Послуги",
@@ -392,6 +409,13 @@ Whether you need a landing page, e-commerce store, or a web app — I've got you
     footer: {
       rights: "Всі права захищені.",
       privacy: "Політика конфіденційності",
+    },
+    notFound: {
+      title: "Сторінку не знайдено",
+      description: "Сторінка, яку ви шукаєте, не існує або була переміщена.",
+      backHome: "← На головну",
+      contact: "Зв'язатися зі мною",
+      help: "Потрібна допомога? Зв'яжіться зі мною через форму зворотного зв'язку.",
     },
     privacy: {
       title: "Політика конфіденційності",
@@ -463,6 +487,7 @@ Ob Landingpage, Online-Shop oder Web-App — ich bin für Sie da.`,
       sending: "Wird gesendet...",
       success: "Nachricht gesendet! Ich melde mich bald bei Ihnen.",
       error: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+      rateLimitError: "Zu viele Anfragen. Bitte versuchen Sie es in {minutes} Minuten erneut.",
     },
     services: {
       badge: "Leistungen",
@@ -529,6 +554,13 @@ Ob Landingpage, Online-Shop oder Web-App — ich bin für Sie da.`,
     footer: {
       rights: "Alle Rechte vorbehalten.",
       privacy: "Datenschutzerklärung",
+    },
+    notFound: {
+      title: "Seite nicht gefunden",
+      description: "Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.",
+      backHome: "← Zurück zur Startseite",
+      contact: "Kontaktieren Sie mich",
+      help: "Brauchen Sie Hilfe? Kontaktieren Sie mich gerne über das Kontaktformular.",
     },
     privacy: {
       title: "Datenschutzerklärung",
