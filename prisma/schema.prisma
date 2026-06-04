@@ -8,16 +8,18 @@ datasource db {
 }
 
 model Project {
-  id          Int      @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   title       String
   description String
   imageUrl    String?
   liveUrl     String?
   skills      String
-  order       Int      @default(0)
-  visible     Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  order       Int            @default(0)
+  visible     Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  views       ProjectView[]
+  clicks      ProjectClick[]
 }
 
 model ContactMessage {
@@ -42,4 +44,42 @@ model AdminUser {
 model SiteSettings {
   id       Int     @id @default(1)
   photoUrl String?
+}
+
+// Analytics: Page views tracking
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String   // e.g., "/", "/privacy", etc.
+  userAgent String?  // Browser info
+  ip        String?  // IP address (hashed for privacy)
+  createdAt DateTime @default(now())
+
+  @@index([path])
+  @@index([createdAt])
+}
+
+// Analytics: Project views (impressions)
+model ProjectView {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([projectId])
+  @@index([createdAt])
+}
+
+// Analytics: Project clicks (when user clicks "View Project")
+model ProjectClick {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([projectId])
+  @@index([createdAt])
 }

@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect } from "react";
 import { useLocale } from "@/lib/locale-context";
+import { trackProjectView, trackProjectClick } from "@/lib/use-analytics";
 
 interface Project {
   id: number;
@@ -21,15 +23,28 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const { t } = useLocale();
 
+  // Track project view on mount (impression)
+  useEffect(() => {
+    trackProjectView(project.id);
+  }, [project.id]);
+
   const url = project.liveUrl
     ? project.liveUrl.startsWith("http") ? project.liveUrl : `https://${project.liveUrl}`
     : null;
+
+  // Track click when user clicks on project
+  const handleClick = () => {
+    if (url) {
+      trackProjectClick(project.id);
+    }
+  };
 
   return (
     <motion.a
       href={url ?? undefined}
       target={url ? "_blank" : undefined}
       rel={url ? "noopener noreferrer" : undefined}
+      onClick={handleClick}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}

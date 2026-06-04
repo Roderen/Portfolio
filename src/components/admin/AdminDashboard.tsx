@@ -7,9 +7,10 @@ import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 import MessageList from "./MessageList";
 import SettingsPanel from "./SettingsPanel";
+import AnalyticsDashboard from "./AnalyticsDashboard";
 import { Project, ContactMessage as Message } from "@/lib/types";
 
-type Tab = "projects" | "messages" | "settings";
+type Tab = "projects" | "messages" | "analytics" | "settings";
 
 export default function AdminDashboard({
   initialProjects,
@@ -161,7 +162,7 @@ export default function AdminDashboard({
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6">
-          {(["projects", "messages", "settings"] as Tab[]).map((t) => (
+          {(["projects", "messages", "analytics", "settings"] as Tab[]).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -222,6 +223,8 @@ export default function AdminDashboard({
             onDelete={handleDeleteMessage}
           />
         )}
+
+        {tab === "analytics" && <AnalyticsDashboard />}
 
         {tab === "settings" && (
           <SettingsPanel initialPhotoUrl={initialPhotoUrl} />

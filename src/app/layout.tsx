@@ -6,6 +6,7 @@ import { Locale, translations } from "@/lib/translations";
 import { Analytics } from "@vercel/analytics/next";
 import { StructuredData } from "@/components/StructuredData";
 import { Toaster } from "react-hot-toast";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 const SUPPORTED: Locale[] = ["en", "ru", "uk", "de"];
 
@@ -109,6 +110,7 @@ export default async function RootLayout({
             },
           }}
         />
+        <AnalyticsTracker />
         <LocaleProvider initialLocale={initialLocale}>{children}</LocaleProvider>
         <Analytics />
       </body>
