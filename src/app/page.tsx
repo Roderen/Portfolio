@@ -10,8 +10,9 @@ import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import FooterLinks from "@/components/FooterLinks";
 
-// Always render on request, never statically at build time
-export const dynamic = "force-dynamic";
+// ISR: Revalidate page every hour (3600 seconds)
+// This caches the page for better performance while keeping content fresh
+export const revalidate = 3600;
 
 // ─── CUSTOMIZE YOUR INFO HERE ───────────────────────────────────────────────
 const PORTFOLIO_CONFIG = {

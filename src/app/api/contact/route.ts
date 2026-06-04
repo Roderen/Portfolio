@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { z } from "zod";
+import { rateLimit, getClientIdentifier, RATE_LIMITS } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().optional(),
@@ -37,6 +38,28 @@ async function sendTelegramNotification(data: {
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limiting: 3 submissions per hour per IP
+    const identifier = getClientIdentifier(req);
+    const rateLimitResult = rateLimit(identifier, RATE_LIMITS.contact);
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: "Too many requests. Please try again later.",
+          retryAfter: Math.ceil((rateLimitResult.reset - Date.now()) / 1000)
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': rateLimitResult.reset.toString(),
+            'Retry-After': Math.ceil((rateLimitResult.reset - Date.now()) / 1000).toString(),
+          }
+        }
+      );
+    }
+
     const body = await req.json();
     const data = schema.parse(body);
 
